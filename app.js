@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 //define public directory
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/app_client'));
 
 //api routes
 app.use('/api', require('./app_api/routes/blogRoutes.js'));
