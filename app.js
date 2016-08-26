@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 
+var port = process.env.PORT || 3000;
 //set up bodyparser
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -30,6 +31,6 @@ app.use(function(err, req, res, next){
 });
 
 //listen on 3000
-app.listen(3000, function(){
-      console.log('Toto app started on http://localhost:' + 3000 + '; press ctrl-c to terminate.');
+app.listen(port, function(){
+      console.log('Toto app started on http://localhost:' + port + '; press ctrl-c to terminate.');
 });
