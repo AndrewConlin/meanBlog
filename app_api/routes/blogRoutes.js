@@ -8,5 +8,6 @@ router.post('/posts', ctrl.create);
 router.put('/posts/:id', ctrl.update);
 router.delete('/posts/:id', ctrl.delete);
 
+router.post('/posts/:id/comments', ctrl.addComment);
 
 module.exports = router;

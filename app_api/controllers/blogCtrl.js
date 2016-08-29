@@ -29,6 +29,14 @@ module.exports.show = function(req,res){
 
 module.exports.create = function(req,res){
   var post = req.body;
+  var preview;
+  if(post.body.length > 500){
+    preview = post.body.substring(0,500);
+  }
+  else {
+    preview = post.body;
+  }
+  post.preview = preview;
   post.date = new Date();
   Mongo.connect(dbURL, function(err, db){
       var posts = db.collection('post');
@@ -62,5 +70,22 @@ module.exports.delete = function(req, res){
         if(err) console.log(err);
         res.json(result);
     });
+  });
+};
+
+module.exports.addComment = function(req, res) {
+  var postID = req.params.id;
+
+  Mongo.connect(dbURL, function(err, db){
+      if(err) console.error(err);
+      var posts = db.collection('post');
+      posts.updateOne({_id:ObjectId(postID)},
+                   {$addToSet:{comments:{_id:new ObjectId(),
+                            body:req.body.body,
+                            author:((req.body.author === "")? "Anonymous" : req.body.author),
+                            date:new Date()}}}, function(err, result){
+          if(err) console.error(err);
+          res.json(result);
+      });
   });
 };

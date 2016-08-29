@@ -26,6 +26,14 @@ app.factory("blogDataService", function($http){
     });
   };
 
+  var addComment = function (id, comment){
+    return $http({
+        method : 'POST',
+        url : '/api/posts/'+id+'/comments',
+        data : comment
+    });
+  };
+
   var deletePost = function(id){
     return $http({
         method : 'DELETE',
@@ -37,6 +45,7 @@ app.factory("blogDataService", function($http){
     getPosts : getPosts,
     getPost : getPost,
     createPost : createPost,
-    deletePost : deletePost
+    deletePost : deletePost,
+    addComment : addComment
   };
 });
