@@ -1,0 +1,46 @@
+#viewContainer{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.postTitle:hover{
+  cursor: pointer;
+  color: rgb(219, 88, 100);
+}
+
+.postBody{
+  margin-top: 20px;
+}
+
+.tag{
+  color:grey;
+  display: inline;
+  padding-right: 5px;
+  float: left;
+}
+
+.date{
+  color: grey;
+
+}
+.tagContainer{
+  margin-bottom: 50px;
+}
+
+small{
+  font-size: 18px;
+  color: grey;
+  font-weight: 200;
+}
+
+label{
+  font-weight: bold;
+}
+
+.commentBody{
+  margin-left: 30px;
+  margin-right: 30px;
+
+  font-size: 1.25rem;
+  font-weight: 300;
+}

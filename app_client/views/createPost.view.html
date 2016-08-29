@@ -1,12 +1,20 @@
-<h1>New Post</h1>
-<div>
-  <input type="text" placeholder="Author" ng-model="author"/>
+<h1>Write a post</h1>
+<div class="form-group">
+  <label for="author">Author</label>
+  <input type="text" class="form-control" id="author" placeholder="Author" ng-model="author">
 </div>
-<div>
-  <input type="text" placeholder="Title" ng-model="title"/>
+<div class="form-group">
+  <label for="title">Title</label>
+  <input type="text" class="form-control" id="title" placeholder="Title" ng-model="title">
 </div>
-<div>
-  <textarea rows="4" cols="50" ng-model="body"></textarea>
+<div class="form-group">
+  <label for="tags">Tags</label>
+  <input type="text" class="form-control" id="tags" placeholder="Tags" ng-model="tags">
 </div>
 
-<button class="btn btn-success" ng-click="createPost(author, title, body)">Create Post</button>
+<div class="form-group">
+  <label for="body">Post</label>
+  <textarea rows="12" cols="100" class="form-control" id="body" ng-model="body"></textarea>
+</div>
+
+<button class="btn btn-success" ng-click="createPost(author, title, body, tags)">Create Post</button>

@@ -13,11 +13,12 @@ app.factory("blogDataService", function($http){
     });
   };
 
-  var createPost = function (author, title, body){
+  var createPost = function (author, title, body, tags){
     var post = {
       author : author,
       title : title,
-      body : body
+      body : body,
+      tags : tags
     };
     return $http({
         method : 'POST',

@@ -4,11 +4,16 @@ app.component("postComponent", {
   template : `
     <div id="postContent">
       <div>
-        <h2>{{post.title}}</h2>
+        <h2>{{post.title}} <small>{{post.author}}</small></h2>
       </div>
-      <h6>{{post.author}}</h6>
-      <p>{{post.date}}</p>
-      <p>{{post.body}}</p>
+      <p>{{post.date | date}}</p>
+      <p class="postBody">{{post.body}}</p>
+
+      <div class="tagContainer">
+        <div ng-repeat="tag in post.tags">
+          <span class="tag">{{tag.body}}</span>
+        </div>
+      </div>
 
       <button type="button" ng-click="deletePost(post._id)">Delete Post</button>
       <hr>
@@ -19,11 +24,10 @@ app.component("postComponent", {
         <input type="text" placeholder="Leave a Comment" ng-model="comment.body">
         <button ng-click="addComment(post._id, comment)">Submit</button>
       </form>
-      <div ng-repeat="comment in post.comments">
+      <div ng-repeat="comment in post.comments" ng-show="post.comments">
         <p>{{comment.author}}</p>
-        <p>{{comment.body}}</p>
+        <p class="commentBody">{{comment.body}}</p>
       </div>
-
     </div>
   `,
   controller : function($scope, $location, postService, blogDataService){
@@ -38,8 +42,13 @@ app.component("postComponent", {
     };
 
     $scope.addComment = function(id, comment){
+      if(!$scope.post.comments){
+        $scope.post.comments = [];
+      }
       blogDataService.addComment(id, comment).then(function(response){
-        $scope.post.comments.push(comment);
+        var commentCopy = angular.copy($scope.comment);
+        $scope.post.comments.push(commentCopy);
+        $scope.comment = {};
       });
     };
 

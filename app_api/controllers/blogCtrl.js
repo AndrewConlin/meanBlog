@@ -29,6 +29,17 @@ module.exports.show = function(req,res){
 
 module.exports.create = function(req,res){
   var post = req.body;
+
+  if(req.body.tags){
+    var tags = req.body.tags.split(" ");
+    post.tags = [];
+
+    tags.forEach(function(tag){
+        post.tags.push({body:tag});
+    });
+
+  }
+
   var preview;
   if(post.body.length > 500){
     preview = post.body.substring(0,500);
