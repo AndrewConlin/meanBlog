@@ -1,6 +1,12 @@
 var Mongo = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
-var dbURL = 'mongodb://localhost:27017/blog';
+var dbURL;
+if(process.env.STATE === "Production"){
+  dbURL = process.env.MONGODB_URI;
+}
+else{
+  dbURL = 'mongodb://localhost:27017/blog';
+}
 
 module.exports.index = function(req,res){
   Mongo.connect(dbURL, function(err, db){
